@@ -2,13 +2,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { persistReducer, persistStore } from "redux-persist";
+import authSliceReducer from "./slices/authSlice";
 import { commentsApi } from "./slices/commentsApi";
 import { postsApi } from "./slices/postsApi";
 import userDataReducer from "./slices/userDataSlice";
 
 const rootReducer = combineReducers({
   userData: userDataReducer,
-
+  authData: authSliceReducer,
   [postsApi.reducerPath]: postsApi.reducer,
   [commentsApi.reducerPath]: commentsApi.reducer,
 });

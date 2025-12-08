@@ -10,7 +10,7 @@ import AnimatedLoginText from "../molecules/AnimatedLoginText";
 import { router } from "expo-router";
 import CustomBottomSheet from "../organisms/CustomBottomSheet";
 import LoginForm from "../organisms/LoginForm";
-import { setSignupForm } from "../redux/slices/userDataSlice";
+import { loginSuccess } from "../redux/slices/authSlice";
 
 export default function LoginScreen() {
   const [name, setName] = useState("");
@@ -21,9 +21,9 @@ export default function LoginScreen() {
 
   const handleOnClick = () => {
     dispatch(
-      setSignupForm({
-        email: email,
+      loginSuccess({
         name: name,
+        email: email,
         createdAt: new Date().toISOString(),
       })
     );

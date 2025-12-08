@@ -4,19 +4,26 @@
     "slug": "YOU",
     "version": "1.0.0",
     "orientation": "portrait",
+    "icon": "assets/images/you.svg",
     "scheme": "you",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-
+    "updates": {
+      "url": "https://u.expo.dev/8e98b2ad-89a2-4502-98ba-c65b873db6a1"
+    },
     "ios": {
       "supportsTablet": true
     },
     "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff",
+        "foregroundImage": "assets/images/you.png",
+        "monochromeImage": "assets/images/you.png"
+      },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "com.jai_rvrs.YOU"
     },
-
     "plugins": ["expo-router"],
     "experiments": {
       "typedRoutes": true
@@ -26,6 +33,9 @@
       "eas": {
         "projectId": "8e98b2ad-89a2-4502-98ba-c65b873db6a1"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }

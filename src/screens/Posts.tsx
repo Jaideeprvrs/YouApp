@@ -76,7 +76,7 @@ const Posts = () => {
   useEffect(() => {
     (async () => {
       const persisted = await AsyncStorage.getItem("persist:root");
-      console.log("PERSIST ROOT RAW =>", persisted);
+      // console.log("PERSIST ROOT RAW =>", persisted);
     })();
   }, []);
   const onRefresh = () => {

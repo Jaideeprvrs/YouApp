@@ -12,9 +12,28 @@ import {
 } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { RootSiblingParent } from "react-native-root-siblings";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+
 export default function RootLayout() {
+  return (
+    <RootSiblingParent>
+      <Provider store={store}>
+        <PersistGate
+          loading={<Text>Loading cached data...</Text>}
+          persistor={persistor}
+        >
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <AuthWrapper />
+          </GestureHandlerRootView>
+        </PersistGate>
+      </Provider>
+    </RootSiblingParent>
+  );
+}
+
+function AuthWrapper() {
+  const isLoggedIn = useSelector((state) => state.authData?.isLoggedIn);
   const [fontsLoaded] = useFonts({
     GoogleSansBold: require("../assets/fonts/GoogleSans-Bold.ttf"),
     GoogleSansMedium: require("../assets/fonts/GoogleSans-Medium.ttf"),
@@ -26,12 +45,12 @@ export default function RootLayout() {
     return <ActivityIndicator />;
   }
   return (
-    <PersistGate
-      loading={<Text>Loading cached data...</Text>}
-      persistor={persistor}
-    >
-      <RootSiblingParent>
-        <Provider store={store}>
+    <RootSiblingParent>
+      <Provider store={store}>
+        <PersistGate
+          loading={<Text>Loading cached data...</Text>}
+          persistor={persistor}
+        >
           <GestureHandlerRootView style={{ flex: 1 }}>
             <Stack
               screenOptions={() => ({
@@ -55,10 +74,13 @@ export default function RootLayout() {
                 ),
               })}
             >
-              <Stack.Screen
-                name="index"
-                options={{ title: "Login", headerShown: false }}
-              />
+              {!isLoggedIn && (
+                <Stack.Screen
+                  name="index"
+                  options={{ title: "Login", headerShown: false }}
+                />
+              )}
+
               <Stack.Screen
                 name="posts"
                 options={{
@@ -84,8 +106,8 @@ export default function RootLayout() {
               />
             </Stack>
           </GestureHandlerRootView>
-        </Provider>
-      </RootSiblingParent>
-    </PersistGate>
+        </PersistGate>
+      </Provider>
+    </RootSiblingParent>
   );
 }

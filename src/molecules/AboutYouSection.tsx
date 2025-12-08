@@ -1,18 +1,19 @@
-import { router, useNavigation } from "expo-router";
+import { router } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
+import { logout } from "../redux/slices/authSlice";
 import { dateConversion } from "../utils/dateConversion";
 
 const AboutYouSection = () => {
-  const signupForm = useSelector((s) => s?.userData);
-  const navigation = useNavigation();
-  const name = signupForm?.signupForm?.name;
-  const email = signupForm?.signupForm?.email;
-  const joinedOn = signupForm?.signupForm?.createdAt;
+  const authData = useSelector((s) => s?.authData);
+  const name = authData?.userData?.name;
+  const email = authData?.userData?.email;
+  const joinedOn = authData?.userData?.createdAt;
   const { formatDate } = dateConversion();
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <View>
@@ -29,7 +30,8 @@ const AboutYouSection = () => {
       </View>
       <TouchableOpacity
         onPress={() => {
-          router.push("/login");
+          dispatch(logout());
+          router.push("/index");
         }}
       >
         <Text style={[styles.title, styles.logout]}>Log Out</Text>
