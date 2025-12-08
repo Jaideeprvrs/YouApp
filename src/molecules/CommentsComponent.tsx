@@ -13,12 +13,17 @@ const CommentsComponent = ({ item, onEditPress, index }) => {
       style={styles.container}
       entering={FadeInUp.delay(index * 20).duration(300)}
     >
-      <Avtar id={item?.id} />
+      <Avtar id={item?.id} testID="mock-avatar" />
       <View style={styles.parent}>
         <Text style={styles.title}>{item?.name}</Text>
         <Text style={styles.email}>{item?.email}</Text>
         <Text style={styles.body}>{item?.body}</Text>
-        <TextButton item={item} onEditPress={onEditPress} label={"Edit"} />
+        <TextButton
+          item={item}
+          onEditPress={onEditPress}
+          label={"Edit"}
+          testID="mock-text-button"
+        />
       </View>
     </AnimatedView>
   );

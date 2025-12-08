@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AboutYouSection /> renders user information correctly 1`] = `
+<View
+  style={
+    {
+      "alignItems": "flex-start",
+      "alignSelf": "flex-start",
+      "flex": 1,
+      "gap": 30,
+      "padding": 20,
+    }
+  }
+>
+  <View>
+    <Text
+      style={
+        {
+          "color": "#a4a4a4ff",
+          "fontFamily": "GoogleSansMedium",
+          "fontSize": 14,
+        }
+      }
+    >
+      Name
+    </Text>
+    <Text
+      style={
+        {
+          "color": "black",
+          "fontFamily": "GoogleSansRegular",
+          "fontSize": 18,
+        }
+      }
+    >
+      Jane Doe
+    </Text>
+  </View>
+  <View>
+    <Text
+      style={
+        {
+          "color": "#a4a4a4ff",
+          "fontFamily": "GoogleSansMedium",
+          "fontSize": 14,
+        }
+      }
+    >
+      Email
+    </Text>
+    <Text
+      style={
+        {
+          "color": "black",
+          "fontFamily": "GoogleSansRegular",
+          "fontSize": 18,
+        }
+      }
+    >
+      jane@example.com
+    </Text>
+  </View>
+  <View>
+    <Text
+      style={
+        {
+          "color": "#a4a4a4ff",
+          "fontFamily": "GoogleSansMedium",
+          "fontSize": 14,
+        }
+      }
+    >
+      Joined On
+    </Text>
+    <Text
+      style={
+        {
+          "color": "black",
+          "fontFamily": "GoogleSansRegular",
+          "fontSize": 18,
+        }
+      }
+    >
+      Formatted: 2023-01-15T10:00:00Z
+    </Text>
+  </View>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#a4a4a4ff",
+            "fontFamily": "GoogleSansMedium",
+            "fontSize": 14,
+          },
+          {
+            "color": "#234C6A",
+            "textDecorationLine": "underline",
+          },
+        ]
+      }
+    >
+      Log Out
+    </Text>
+  </View>
+</View>
+`;

@@ -11,7 +11,11 @@ const AnimatedLoginText = ({ text, speed = 60, style }) => {
         {STRINGS.loginText1}
       </Text>
       <AnimatedText text={text} speed={speed} style={style} />
-      <Text style={styles.appTitle} numberOfLines={4}>
+      <Text
+        style={styles.appTitle}
+        numberOfLines={4}
+        testID="mock-animated-text"
+      >
         {STRINGS.loginText2}
       </Text>
     </View>

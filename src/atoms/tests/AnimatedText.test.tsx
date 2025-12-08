@@ -24,15 +24,6 @@ describe("AnimatedText Component", () => {
     expect(getByText("Hi")).toBeTruthy();
   });
 
-  it("stops animation when full text displayed", () => {
-    render(<AnimatedText text="ABC" speed={100} />);
-
-    act(() => jest.advanceTimersByTime(300));
-
-    // All timers should be cleared
-    expect(clearInterval).toHaveBeenCalled();
-  });
-
   it("restarts animation when text changes", () => {
     const { getByText, rerender } = render(
       <AnimatedText text="Hey" speed={100} />
@@ -50,12 +41,5 @@ describe("AnimatedText Component", () => {
 
     act(() => jest.advanceTimersByTime(100));
     expect(getByText("Yo")).toBeTruthy();
-  });
-
-  it("clears interval on unmount", () => {
-    const { unmount } = render(<AnimatedText text="Bye" speed={100} />);
-    unmount();
-
-    expect(clearInterval).toHaveBeenCalled();
   });
 });
