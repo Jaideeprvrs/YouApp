@@ -1,59 +1,91 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/components/useColorScheme';
-
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router';
-
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
-};
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
+import { COLORS } from "@/src/constants/Colors";
+import { STRINGS } from "@/src/constants/Strings";
+import { persistor, store } from "@/src/redux/store";
+import { useFonts } from "expo-font";
+import { router, Stack } from "expo-router";
+import {
+  ActivityIndicator,
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { RootSiblingParent } from "react-native-root-siblings";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 export default function RootLayout() {
-  const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-    ...FontAwesome.font,
+  const [fontsLoaded] = useFonts({
+    GoogleSansBold: require("../assets/fonts/GoogleSans-Bold.ttf"),
+    GoogleSansMedium: require("../assets/fonts/GoogleSans-Medium.ttf"),
+    GoogleSansRegular: require("../assets/fonts/GoogleSans-Regular.ttf"),
+    CedarvilleCursiveRegular: require("../assets/fonts/CedarvilleCursiveRegular.ttf"),
   });
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  useEffect(() => {
-    if (error) throw error;
-  }, [error]);
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
+  if (!fontsLoaded) {
+    return <ActivityIndicator />;
   }
-
-  return <RootLayoutNav />;
-}
-
-function RootLayoutNav() {
-  const colorScheme = useColorScheme();
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
-    </ThemeProvider>
+    <PersistGate
+      loading={<Text>Loading cached data...</Text>}
+      persistor={persistor}
+    >
+      <RootSiblingParent>
+        <Provider store={store}>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <Stack
+              screenOptions={() => ({
+                headerShown: true,
+                headerTitleStyle: {
+                  fontFamily: STRINGS.CedarvilleCursiveRegular,
+                  fontSize: 20,
+                },
+                headerStyle: { backgroundColor: COLORS.white },
+                headerTintColor: COLORS.black,
+                headerTitleAlign: "center",
+                headerShadowVisible: false,
+                headerRight: () => (
+                  <TouchableOpacity onPress={() => router.push("/profile")}>
+                    <Image
+                      source={require("../assets/images/man.png")}
+                      style={{ width: 35, height: 35, borderRadius: 50 }}
+                      resizeMode="cover"
+                    />
+                  </TouchableOpacity>
+                ),
+              })}
+            >
+              <Stack.Screen
+                name="index"
+                options={{ title: "Login", headerShown: false }}
+              />
+              <Stack.Screen
+                name="posts"
+                options={{
+                  title: "YOU",
+                  headerBackVisible: false,
+                }}
+              />
+              <Stack.Screen
+                name="comments"
+                options={{
+                  title: "COMMENTS",
+                  headerTitleStyle: { fontFamily: STRINGS.GoogleSansMedium },
+                  headerRight: () => <View />,
+                }}
+              />
+              <Stack.Screen
+                name="profile"
+                options={{
+                  headerShown: true,
+                  title: "",
+                  headerRight: () => <View />,
+                }}
+              />
+            </Stack>
+          </GestureHandlerRootView>
+        </Provider>
+      </RootSiblingParent>
+    </PersistGate>
   );
 }
