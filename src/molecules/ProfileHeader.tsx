@@ -2,12 +2,8 @@ import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
+import { ProfileHeaderProps } from "../types/ProfileHeaderProps";
 
-interface ProfileHeaderProps {
-  userName: string;
-  style?: any;
-  email?: string;
-}
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   userName,
   style,

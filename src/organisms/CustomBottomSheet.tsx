@@ -4,22 +4,10 @@ import BottomSheet, {
 } from "@gorhom/bottom-sheet";
 import React, { useCallback } from "react";
 import { StyleSheet } from "react-native";
-
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { COLORS } from "../constants/Colors";
+import { CustomBottomSheetProps } from "../types/CustomBottomSheetProps";
 
-interface CustomBottomSheetProps {
-  children: React.ReactNode;
-  sheetRef: React.RefObject<BottomSheet>;
-  onChange: (index: number) => void;
-  initialSnap: number;
-  snapPoints: number[];
-  backDrop: boolean;
-  enablePanDown: boolean;
-  enableContentPanning: boolean;
-  enableHandlePanning: boolean;
-  handleIndicator: any;
-}
 const CustomBottomSheet: React.FC<CustomBottomSheetProps> = ({
   children,
   sheetRef,
@@ -46,7 +34,7 @@ const CustomBottomSheet: React.FC<CustomBottomSheetProps> = ({
   return (
     <BottomSheet
       ref={sheetRef}
-      index={initialSnap} // Initial snap point
+      index={initialSnap}
       snapPoints={snapPoints}
       onChange={onChange}
       enablePanDownToClose={enablePanDown}

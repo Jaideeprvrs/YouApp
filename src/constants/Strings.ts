@@ -27,4 +27,10 @@ export const STRINGS = {
   loginDesc: "let YOU set things up for you.",
   offline: " You are currently Offline.",
   online: " You are currently Online.",
+  logout: "Log Out",
+  joinedOn: "Joined On",
+  title: "Title",
+  noPostsdesc: "No posts yet. Go ahead and break the silence!",
+  createPost: "Create a post",
+  noPostsTitle: "No Posts",
 };

@@ -2,12 +2,7 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
-interface ButtonProps {
-  onClick: () => void;
-  label: string;
-  style?: any;
-  disable?: boolean;
-}
+import { ButtonProps } from "../types/ButtonProps";
 
 const ButtonComponent: React.FC<ButtonProps> = ({
   onClick,
@@ -15,7 +10,6 @@ const ButtonComponent: React.FC<ButtonProps> = ({
   style,
   disable,
 }) => {
-  console.log(disable, "disable");
   return (
     <TouchableOpacity
       style={[styles.button, style, disable && styles.disableButton]}

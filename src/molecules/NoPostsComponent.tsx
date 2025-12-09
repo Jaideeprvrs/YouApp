@@ -4,30 +4,25 @@ import NoData from "../../assets/images/nodata.svg";
 import ButtonComponent from "../atoms/ButtonComponent";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
-type Props = {
-  onOk?: () => void;
-  onOkText: string;
-  title: string;
-  message: string;
-};
+import { NoPostComponentProps } from "../types/NoPostComponentProps";
 
-const NoPostsComponent: React.FC<Props> = ({
-  onOk,
-  onOkText,
+const NoPostsComponent: React.FC<NoPostComponentProps> = ({
+  onClick,
+  onClickText,
   title,
   message,
 }) => {
   return (
     <View style={styles.overlay}>
       <View style={styles.Container}>
-        <View style={{ alignSelf: "center", marginVertical: 10 }}>
+        <View style={styles.image}>
           <NoData width={150} height={150} />
         </View>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.message}>{message}</Text>
 
         <View style={styles.buttonRow}>
-          {onOk && <ButtonComponent label={onOkText} onClick={onOk} />}
+          {onClick && <ButtonComponent label={onClickText} onClick={onClick} />}
         </View>
       </View>
     </View>
@@ -66,17 +61,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     gap: 10,
   },
-  button: {
-    paddingVertical: 12,
-    paddingHorizontal: 25,
-    borderRadius: 20,
-  },
-  cancelBtn: {
-    backgroundColor: COLORS.black,
-  },
-  cancelText: {
-    color: COLORS.white,
-    fontFamily: STRINGS.GoogleSansMedium,
-    textAlign: "center",
-  },
+  image: { alignSelf: "center", marginVertical: 10 },
 });

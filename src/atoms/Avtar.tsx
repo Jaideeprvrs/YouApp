@@ -4,7 +4,7 @@ import Avatar from "../../assets/images/person.svg";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
 import { getColorFromId } from "../utils/getColorFromId";
-const Avtar = ({ id }: any) => {
+const Avtar = ({ id }: number) => {
   const bgColor = getColorFromId(id.toString());
   return (
     <View
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 50,
-    justifyContent: "center", // vertical center
+    justifyContent: "center",
     alignItems: "center",
     backgroundColor: COLORS.secondary,
   },

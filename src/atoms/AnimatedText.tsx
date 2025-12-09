@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Text, TextStyle } from "react-native";
-
-interface AnimatedTextProps {
-  text?: string;
-  speed?: number;
-  style?: TextStyle;
-}
+import { Text } from "react-native";
+import { AnimatedTextProps } from "../types/AnimatedTextProps";
 
 const AnimatedText: React.FC<AnimatedTextProps> = ({
   text = "",

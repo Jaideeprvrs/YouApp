@@ -13,7 +13,7 @@ export const MemoizedDetailsComponent = memo(({ item }) => {
         postBody: item?.body,
       },
     });
-  }, [item]); // Depend on item data
+  }, [item]);
 
   return (
     <TouchableOpacity onPress={handlePress}>

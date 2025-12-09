@@ -7,7 +7,6 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import Toast from "react-native-root-toast";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNetInfo } from "@react-native-community/netinfo";
@@ -70,14 +69,12 @@ const Posts = () => {
   }, []);
 
   const handleOpenSheet = useCallback(() => {
-    // setSelectedComment(item);
-    bottomSheetRef.current?.expand(); // or .snapToIndex(1)
+    bottomSheetRef.current?.expand();
   }, []);
 
   const createPost = async () => {
     try {
       const res = await handleCreatePost({ post, postTitle });
-      console.log(res, "testres");
       refetch();
       bottomSheetRef.current?.close();
       setPost("");
@@ -111,10 +108,10 @@ const Posts = () => {
     return (
       <ErrorComponent
         message={STRINGS.errorMessage}
-        onOk={() => {
+        onClick={() => {
           refetch();
         }}
-        onOkText={STRINGS.retry}
+        onClickText={STRINGS.retry}
         title={STRINGS.errorTitle}
       />
     );
@@ -164,7 +161,6 @@ const Posts = () => {
           postTitle={postTitle}
         />
       </CustomBottomSheet>
-      <Toast />
     </View>
   );
 };

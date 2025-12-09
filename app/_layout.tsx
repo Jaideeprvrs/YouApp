@@ -38,7 +38,6 @@ function AuthWrapper() {
   const isLoggedIn = useSelector(
     (state) => state.authData.userData?.isLoggedIn
   );
-
   const [fontsLoaded] = useFonts({
     GoogleSansBold: require("../assets/fonts/GoogleSans-Bold.ttf"),
     GoogleSansMedium: require("../assets/fonts/GoogleSans-Medium.ttf"),

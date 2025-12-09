@@ -3,13 +3,19 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
+import { NewPostProps } from "../types/NewPostProps";
 
-const NewPost = ({ postTitle, setPostTitle, post, setPost }) => {
+const NewPost: React.FC<NewPostProps> = ({
+  postTitle,
+  setPostTitle,
+  post,
+  setPost,
+}) => {
   return (
     <View style={{ backgroundColor: COLORS.accordion, borderRadius: 10 }}>
       <BottomSheetTextInput
         style={[styles.input, { padding: 15 }]}
-        placeholder="Title"
+        placeholder={STRINGS.title}
         placeholderTextColor={COLORS.disableButton}
         multiline
         value={postTitle}
@@ -17,8 +23,8 @@ const NewPost = ({ postTitle, setPostTitle, post, setPost }) => {
         maxLength={20}
       />
       <BottomSheetTextInput
-        style={[styles.input, , { padding: 15 }]}
-        placeholder="Write about YOU..."
+        style={[styles.input, { padding: 15 }]}
+        placeholder={STRINGS.postDescPlaceholder}
         placeholderTextColor={COLORS.disableButton}
         multiline
         value={post}

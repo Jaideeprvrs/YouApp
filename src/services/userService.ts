@@ -103,12 +103,12 @@ export const useUserServices = () => {
             fontFamily: STRINGS.GoogleSansMedium,
           },
         });
-
         throw error;
       }
     },
     [updateComment]
   );
+
   return {
     handleCreatePost,
     isLoading,

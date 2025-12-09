@@ -3,8 +3,13 @@ import { StyleSheet, Text, View } from "react-native";
 import AnimatedText from "../atoms/AnimatedText";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
+import { AnimatedLoginTextProps } from "../types/AnimatedLoginTextProps";
 
-const AnimatedLoginText = ({ text, speed = 60, style }) => {
+const AnimatedLoginText: React.FC<AnimatedLoginTextProps> = ({
+  text,
+  speed = 60,
+  style,
+}) => {
   return (
     <View style={styles.headerCard}>
       <Text style={styles.appTitle} numberOfLines={4}>
@@ -38,6 +43,5 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: STRINGS.GoogleSansBold,
     color: COLORS.white,
-    // marginBottom: 10,
   },
 });

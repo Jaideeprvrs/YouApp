@@ -1,29 +1,29 @@
 import React, { useCallback } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { useSelector } from "react-redux";
-import { COLORS } from "../constants/Colors";
+import { STRINGS } from "../constants/Strings";
 import DetailsComponent from "../molecules/DetailsComponent";
 import NoPostsComponent from "../molecules/NoPostsComponent";
+import { ProfileComponentProps } from "../types/ProfileChildrenProps";
 
-const PostsSection = ({ openSheet }) => {
+const PostsSection: React.FC<ProfileComponentProps> = ({ openSheet }) => {
   const postsData = useSelector((s) => s?.postsData);
 
   const posts = postsData?.createdPosts;
 
-  const renderItem = useCallback(({ item }) => {
+  const renderItem = useCallback(({ item, index }) => {
     return (
-      <View>
-        <DetailsComponent
-          title={item?.title}
-          description={item?.body}
-          fromPostsSection={true}
-        />
-      </View>
+      <DetailsComponent
+        title={item?.title}
+        description={item?.body}
+        fromPostsSection={true}
+        postId={index}
+      />
     );
   }, []);
-  console.log(posts?.length, "posts?.length");
+
   return (
-    <View style={{ flex: 1, padding: 10 }}>
+    <View style={styles.container}>
       {posts?.length != 0 ? (
         <FlatList
           data={posts}
@@ -38,10 +38,10 @@ const PostsSection = ({ openSheet }) => {
         />
       ) : (
         <NoPostsComponent
-          message="You din't post anything about YOU"
-          onOkText="Create a post"
-          title="No Posts"
-          onOk={openSheet}
+          message={STRINGS.noPostsdesc}
+          onClickText={STRINGS.createPost}
+          title={STRINGS.noPostsTitle}
+          onClick={openSheet}
         />
       )}
     </View>
@@ -51,9 +51,5 @@ const PostsSection = ({ openSheet }) => {
 export default PostsSection;
 
 const styles = StyleSheet.create({
-  hLine: {
-    width: "100%",
-    borderWidth: 0.5,
-    borderColor: COLORS.disableButton,
-  },
+  container: { flex: 1, padding: 10 },
 });

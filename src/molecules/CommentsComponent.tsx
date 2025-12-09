@@ -5,7 +5,13 @@ import Avtar from "../atoms/Avtar";
 import TextButton from "../atoms/TextButton";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
-const CommentsComponent = ({ item, onEditPress, index }) => {
+import { CommentsComponentProps } from "../types/CommentsComponentProps";
+
+const CommentsComponent: React.FC<CommentsComponentProps> = ({
+  item,
+  onEditPress,
+  index,
+}) => {
   const AnimatedView = Animated.View;
 
   return (

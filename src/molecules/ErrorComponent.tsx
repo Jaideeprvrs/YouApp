@@ -4,16 +4,11 @@ import NetworkError from "../../assets/images/networkError.svg";
 import ButtonComponent from "../atoms/ButtonComponent";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
-type Props = {
-  onOk: () => void;
-  onOkText: string;
-  title: string;
-  message: string;
-};
+import { ErrorComponentProps } from "../types/ErrorComponentProps";
 
-const ErrorComponent: React.FC<Props> = ({
-  onOk,
-  onOkText,
+const ErrorComponent: React.FC<ErrorComponentProps> = ({
+  onClick,
+  onClickText,
   title,
   message,
 }) => {
@@ -26,7 +21,7 @@ const ErrorComponent: React.FC<Props> = ({
         <Text style={styles.message}>{message}</Text>
 
         <View style={styles.buttonRow}>
-          {onOk && <ButtonComponent label={onOkText} onClick={onOk} />}
+          {onClick && <ButtonComponent label={onClickText} onClick={onClick} />}
         </View>
       </View>
     </View>

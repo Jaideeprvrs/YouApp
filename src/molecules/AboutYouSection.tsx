@@ -11,37 +11,25 @@ const AboutYouSection = () => {
   const name = authData?.name;
   const email = authData?.email;
   const joinedOn = authData?.joinedOn;
-  console.log(joinedOn, "joinedOn");
+
   const { formatDate } = dateConversion();
   const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.title}>Name</Text>
+        <Text style={styles.title}>{STRINGS.name}</Text>
         <Text style={styles.body}>{name}</Text>
       </View>
       <View>
-        <Text style={styles.title}>Email</Text>
+        <Text style={styles.title}>{STRINGS.email}</Text>
         <Text style={styles.body}>{email}</Text>
       </View>
       <View>
-        <Text style={styles.title}>Joined On</Text>
+        <Text style={styles.title}>{STRINGS.joinedOn}</Text>
         <Text style={styles.body}>{formatDate(joinedOn)}</Text>
       </View>
-      <TouchableOpacity
-        onPress={() => {
-          const obj = {
-            name: "",
-            email: "",
-            joinedOn: "",
-            id: "",
-            isLoggedIn: false,
-          };
-          dispatch(logout());
-          // router.push("/index");
-        }}
-      >
-        <Text style={[styles.title, styles.logout]}>Log Out</Text>
+      <TouchableOpacity onPress={() => dispatch(logout())}>
+        <Text style={[styles.title, styles.logout]}>{STRINGS.logout}</Text>
       </TouchableOpacity>
     </View>
   );

@@ -23,7 +23,7 @@ export default function CommentsScreen() {
   const { postId, postName, postBody } = useLocalSearchParams();
   const { data, error, refetch, isLoading, isFetching } =
     useGetCommentsQuery(postId);
-  const { handleUpdateComment, updateLoading, updateError } = useUserServices();
+  const { handleUpdateComment } = useUserServices();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [selectedComment, setSelectedComment] = useState(null);
@@ -31,7 +31,7 @@ export default function CommentsScreen() {
 
   const handleOpenSheet = useCallback((item) => {
     setSelectedComment(item);
-    bottomSheetRef.current?.expand(); // or .snapToIndex(1)
+    bottomSheetRef.current?.expand();
   }, []);
 
   const renderItem = useCallback(
@@ -50,9 +50,9 @@ export default function CommentsScreen() {
     const body = selectedComment.body;
     try {
       await handleUpdateComment({ id, body });
-      // setSuccess(true);
       refetch();
       bottomSheetRef.current?.close();
+      console.log("first");
     } catch (error) {
       console.log("API Error:", error);
     }
@@ -120,8 +120,8 @@ export default function CommentsScreen() {
       ) : (
         <ErrorComponent
           message={STRINGS.errorMessage}
-          onOk={refetch}
-          onOkText={STRINGS.retry}
+          onClick={refetch}
+          onClickText={STRINGS.retry}
           title={STRINGS.errorTitle}
         />
       )}

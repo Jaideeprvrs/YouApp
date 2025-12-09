@@ -19,11 +19,11 @@ export const commentsApi = createApi({
 
     updateComment: builder.mutation({
       query: ({ id, body }) => ({
-        url: `/comments/${id}`,
+        url: `/comment/${id}`,
         method: "PATCH",
         body,
       }),
-      invalidatesTags: ["Comments"], // 👈 refetch comments after update
+      // invalidatesTags: ["Comments"], // 👈 refetch comments after update
     }),
   }),
 });

@@ -4,10 +4,17 @@ import { StyleSheet, Text, View } from "react-native";
 import ButtonComponent from "../atoms/ButtonComponent";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
+import { LoginFormProps } from "../types/LoginFormProps";
 
-const LoginForm = ({ name, email, setName, setEmail, handleOnClick }) => {
-  const isValidEmail = (text) => {
-    const regex = STRINGS.emailRegex;
+const LoginForm: React.FC<LoginFormProps> = ({
+  name,
+  email,
+  setName,
+  setEmail,
+  handleOnClick,
+}) => {
+  const isValidEmail = (text: string) => {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3,}$/;
     return regex.test(text);
   };
 
