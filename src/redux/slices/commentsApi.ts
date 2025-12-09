@@ -14,16 +14,15 @@ export const commentsApi = createApi({
   endpoints: (builder) => ({
     getComments: builder.query({
       query: (postId) => `/posts/${postId}/comments`,
-      providesTags: ["Comments"], // 👈 tells RTK Query this data can be invalidated
+      providesTags: ["Comments"],
     }),
 
     updateComment: builder.mutation({
       query: ({ id, body }) => ({
-        url: `/comment/${id}`,
+        url: `/comments/${id}`,
         method: "PATCH",
         body,
       }),
-      // invalidatesTags: ["Comments"], // 👈 refetch comments after update
     }),
   }),
 });

@@ -4,10 +4,10 @@ import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import { COLORS } from "../constants/Colors";
+import CreatePosts from "../organisms/CreatePosts";
 import CustomBottomSheet from "../organisms/CustomBottomSheet";
 import ProfileContentComponent from "../organisms/ProfileContentComponent";
 import { useUserServices } from "../services/userService";
-import CreatePosts from "./CreatePosts";
 
 const ProfileScreen = () => {
   const [post, setPost] = useState(null);

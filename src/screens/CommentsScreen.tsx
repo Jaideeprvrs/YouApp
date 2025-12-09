@@ -52,7 +52,6 @@ export default function CommentsScreen() {
       await handleUpdateComment({ id, body });
       refetch();
       bottomSheetRef.current?.close();
-      console.log("first");
     } catch (error) {
       console.log("API Error:", error);
     }
@@ -98,7 +97,6 @@ export default function CommentsScreen() {
       />
       {!error ? (
         <View style={{ flex: 1 }}>
-          {/* <Text style={styles.heading}>Comments</Text> */}
           <FlatList
             data={data}
             keyExtractor={(item) => item.id.toString()}
@@ -106,7 +104,6 @@ export default function CommentsScreen() {
             style={{ flex: 1 }}
             renderItem={({ item, index }) => renderItem(item, index)}
             showsVerticalScrollIndicator={false}
-            // ItemSeparatorComponent={Seperator}
             refreshControl={
               <RefreshControl
                 refreshing={refreshing}
@@ -157,7 +154,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 10,
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: COLORS.white,
   },
   title: {
     fontFamily: STRINGS.GoogleSansMedium,

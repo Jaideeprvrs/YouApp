@@ -1,5 +1,5 @@
 import { COLORS } from "@/src/constants/Colors";
-import ProfileScreen from "@/src/screens/Profile";
+import ProfileScreen from "@/src/screens/ProfileScreen";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
