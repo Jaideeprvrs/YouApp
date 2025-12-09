@@ -6,7 +6,7 @@ import authSliceReducer from "./slices/authSlice";
 import { commentsApi } from "./slices/commentsApi";
 import postsDataReducer from "./slices/postDataSlice";
 import { postsApi } from "./slices/postsApi";
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   postsData: postsDataReducer,
   authData: authSliceReducer,
   [postsApi.reducerPath]: postsApi.reducer,

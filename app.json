@@ -7,16 +7,30 @@
     "scheme": "you",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/splashscreen.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
     "updates": {
       "url": "https://u.expo.dev/8e98b2ad-89a2-4502-98ba-c65b873db6a1"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "icon": {
+        "dark": "./assets/images/iosdark.png",
+        "light": "./assets/images/ioslight.png",
+        "tinted": "./assets/images/iostinted.png"
+      }
     },
     "android": {
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.jai_rvrs.YOU"
+      "package": "com.jai_rvrs.YOU",
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff",
+        "foregroundImage": "./assets/images/androidicon.png"
+      }
     },
     "plugins": ["expo-router"],
     "experiments": {

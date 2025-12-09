@@ -19,7 +19,6 @@ const postsDataSlice = createSlice({
   name: "postsData",
   initialState,
   reducers: {
-    // 💾 store a post created by user
     addUserPost: (state, action: PayloadAction<UserPost>) => {
       state.createdPosts.unshift(action.payload);
     },

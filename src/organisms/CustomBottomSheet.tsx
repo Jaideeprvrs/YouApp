@@ -27,6 +27,7 @@ const CustomBottomSheet: React.FC<CustomBottomSheetProps> = ({
         {...props}
         disappearsOnIndex={-1}
         appearsOnIndex={0}
+        testID="mock-backdrop"
       />
     ),
     []
@@ -46,6 +47,7 @@ const CustomBottomSheet: React.FC<CustomBottomSheetProps> = ({
         { paddingBottom: insets.bottom },
       ]}
       backdropComponent={backDrop && renderBackdrop}
+      testID="mock-bottom-sheet"
     >
       <BottomSheetView
         style={[styles.contentContainer, { paddingBottom: insets.bottom + 16 }]}
