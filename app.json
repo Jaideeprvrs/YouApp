@@ -4,7 +4,6 @@
     "slug": "YOU",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "assets/images/you.svg",
     "scheme": "you",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -15,11 +14,6 @@
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#ffffff",
-        "foregroundImage": "assets/images/you.png",
-        "monochromeImage": "assets/images/you.png"
-      },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "com.jai_rvrs.YOU"

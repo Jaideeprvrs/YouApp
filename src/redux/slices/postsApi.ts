@@ -19,6 +19,13 @@ export const postsApi = createApi({
   endpoints: (builder) => ({
     getPosts: builder.query({
       query: () => "/posts",
+      transformErrorResponse: (response, meta, arg) => {
+        // When offline or fetch fails:
+        return {
+          message: "Unable to load posts. You might be offline.",
+          details: response,
+        };
+      },
     }),
     postPosts: builder.mutation({
       query: ({ body }) => ({

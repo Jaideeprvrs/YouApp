@@ -13,9 +13,9 @@ const ButtonComponent: React.FC<ButtonProps> = ({
   onClick,
   label,
   style,
-
   disable,
 }) => {
+  console.log(disable, "disable");
   return (
     <TouchableOpacity
       style={[styles.button, style, disable && styles.disableButton]}

@@ -1,34 +1,31 @@
 import BottomSheet from "@gorhom/bottom-sheet";
-import { useRoute } from "@react-navigation/native";
-import { useNavigation } from "expo-router";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
   RefreshControl,
   StyleSheet,
-  TouchableOpacity,
   View,
 } from "react-native";
 import Toast from "react-native-root-toast";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNetInfo } from "@react-native-community/netinfo";
-import { router } from "expo-router";
+import { useSelector } from "react-redux";
+import InternetStatus from "../atoms/InternetStatus";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
-import DetailsComponent from "../molecules/DetailsComponent";
 import ErrorComponent from "../molecules/ErrorComponent";
+import { MemoizedDetailsComponent } from "../molecules/MemoizedDetailsComponent";
 import CustomBottomSheet from "../organisms/CustomBottomSheet";
 import { useGetPostsQuery } from "../redux/slices/postsApi";
 import { useUserServices } from "../services/userService";
 import CreatePosts from "./CreatePosts";
 const Posts = () => {
   const { isConnected } = useNetInfo();
-  const navigation = useNavigation();
-  const route = useRoute();
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const { userName } = route?.params;
+  const userData = useSelector((state) => state.authData.userData);
+  const userName = userData?.name;
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [post, setPost] = useState(null);
   const [postTitle, setPostTitle] = useState(null);
@@ -38,40 +35,17 @@ const Posts = () => {
     isLoading: postLoading,
     isSuccess: postSuccess,
   } = useUserServices();
-  const { data, error, isLoading, refetch, isFetching } = useGetPostsQuery(
-    undefined,
-    {
-      skip: !isConnected,
-    }
-  );
+  const {
+    data: onlinePosts,
+    error,
+    isLoading,
+    refetch,
+    isFetching,
+  } = useGetPostsQuery();
+
   const [refreshing, setRefreshing] = useState(false);
   const renderItem = useCallback(({ item }) => {
-    return (
-      <TouchableOpacity
-        onPress={
-          () =>
-            router.push({
-              pathname: "/comments",
-              params: {
-                postId: item?.id,
-                postName: item?.title,
-                postBody: item?.body,
-              },
-            })
-          // navigation.navigate("comments", {
-          //   postId: item?.id,
-          //   postName: item?.title,
-          //   postBody: item?.body,
-          // })
-        }
-      >
-        <DetailsComponent
-          title={item?.title}
-          description={item?.body}
-          postId={item?.id}
-        />
-      </TouchableOpacity>
-    );
+    return <MemoizedDetailsComponent item={item} />;
   }, []);
   useEffect(() => {
     (async () => {
@@ -117,7 +91,7 @@ const Posts = () => {
     [userName, handleOpenSheet]
   );
 
-  if (isLoading || isFetching || postLoading)
+  if (isLoading && !onlinePosts)
     return (
       <ActivityIndicator
         style={styles.indicator}
@@ -125,7 +99,15 @@ const Posts = () => {
         color={COLORS.secondary}
       />
     );
-  if (error)
+  if (isFetching)
+    return (
+      <ActivityIndicator
+        style={styles.indicator}
+        size="large"
+        color={COLORS.secondary}
+      />
+    );
+  if (error && !onlinePosts)
     return (
       <ErrorComponent
         message={STRINGS.errorMessage}
@@ -139,8 +121,9 @@ const Posts = () => {
 
   return (
     <View style={styles.container}>
+      {!isConnected && <InternetStatus />}
       <FlatList
-        data={data}
+        data={onlinePosts}
         ListHeaderComponent={Header}
         renderItem={renderItem}
         initialNumToRender={3}

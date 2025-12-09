@@ -20,13 +20,14 @@ export default function LoginScreen() {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   const handleOnClick = () => {
-    dispatch(
-      loginSuccess({
-        name: name,
-        email: email,
-        createdAt: new Date().toISOString(),
-      })
-    );
+    const obj = {
+      name: name,
+      email: email,
+      joinedOn: new Date().toISOString(),
+      id: Date.now().toString(),
+      isLoggedIn: true,
+    };
+    dispatch(loginSuccess(obj));
     router.push({ pathname: "/posts", params: { userName: name } });
   };
 

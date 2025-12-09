@@ -6,9 +6,9 @@ import DetailsComponent from "../molecules/DetailsComponent";
 import NoPostsComponent from "../molecules/NoPostsComponent";
 
 const PostsSection = ({ openSheet }) => {
-  const signupForm = useSelector((s) => s?.userData);
+  const postsData = useSelector((s) => s?.postsData);
 
-  const posts = signupForm?.createdPosts;
+  const posts = postsData?.createdPosts;
 
   const renderItem = useCallback(({ item }) => {
     return (
@@ -21,7 +21,7 @@ const PostsSection = ({ openSheet }) => {
       </View>
     );
   }, []);
-
+  console.log(posts?.length, "posts?.length");
   return (
     <View style={{ flex: 1, padding: 10 }}>
       {posts?.length != 0 ? (

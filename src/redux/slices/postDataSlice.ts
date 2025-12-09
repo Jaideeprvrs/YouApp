@@ -15,8 +15,8 @@ const initialState: UserDataState = {
   createdPosts: [],
 };
 
-const userDataSlice = createSlice({
-  name: "userData",
+const postsDataSlice = createSlice({
+  name: "postsData",
   initialState,
   reducers: {
     // 💾 store a post created by user
@@ -26,6 +26,6 @@ const userDataSlice = createSlice({
   },
 });
 
-export const { addUserPost } = userDataSlice.actions;
+export const { addUserPost } = postsDataSlice.actions;
 
-export default userDataSlice.reducer;
+export default postsDataSlice.reducer;

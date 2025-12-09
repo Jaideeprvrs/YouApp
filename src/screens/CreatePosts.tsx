@@ -1,3 +1,4 @@
+import { useNetInfo } from "@react-native-community/netinfo";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import ButtonComponent from "../atoms/ButtonComponent";
@@ -25,6 +26,8 @@ const CreatePosts: React.FC<CreatePostsProps> = ({
   postTitle,
   setPostTitle,
 }) => {
+  const { isConnected } = useNetInfo();
+  console.log(isConnected, "isConnected");
   return (
     <View style={[styles.container, { padding: fromSheet ? 0 : 10 }]}>
       <ProfileHeader userName={userName} />
@@ -47,7 +50,7 @@ const CreatePosts: React.FC<CreatePostsProps> = ({
         <ButtonComponent
           label="Post"
           onClick={() => sendPost()}
-          disable={!post}
+          disable={!post || !isConnected}
         />
       )}
       {!fromSheet && <View style={styles.hLine} />}

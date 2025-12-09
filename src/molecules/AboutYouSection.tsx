@@ -1,4 +1,3 @@
-import { router } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,10 +7,11 @@ import { logout } from "../redux/slices/authSlice";
 import { dateConversion } from "../utils/dateConversion";
 
 const AboutYouSection = () => {
-  const authData = useSelector((s) => s?.authData);
-  const name = authData?.userData?.name;
-  const email = authData?.userData?.email;
-  const joinedOn = authData?.userData?.createdAt;
+  const authData = useSelector((state) => state.authData.userData);
+  const name = authData?.name;
+  const email = authData?.email;
+  const joinedOn = authData?.joinedOn;
+  console.log(joinedOn, "joinedOn");
   const { formatDate } = dateConversion();
   const dispatch = useDispatch();
   return (
@@ -30,8 +30,15 @@ const AboutYouSection = () => {
       </View>
       <TouchableOpacity
         onPress={() => {
+          const obj = {
+            name: "",
+            email: "",
+            joinedOn: "",
+            id: "",
+            isLoggedIn: false,
+          };
           dispatch(logout());
-          router.push("/index");
+          // router.push("/index");
         }}
       >
         <Text style={[styles.title, styles.logout]}>Log Out</Text>

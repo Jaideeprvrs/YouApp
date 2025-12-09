@@ -3,6 +3,7 @@ import { STRINGS } from "@/src/constants/Strings";
 import { persistor, store } from "@/src/redux/store";
 import { useFonts } from "expo-font";
 import { router, Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import {
   ActivityIndicator,
   Image,
@@ -12,9 +13,9 @@ import {
 } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { RootSiblingParent } from "react-native-root-siblings";
+import "react-native-url-polyfill/auto";
 import { Provider, useSelector } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-
 export default function RootLayout() {
   return (
     <RootSiblingParent>
@@ -24,6 +25,7 @@ export default function RootLayout() {
           persistor={persistor}
         >
           <GestureHandlerRootView style={{ flex: 1 }}>
+            <StatusBar style="dark" />
             <AuthWrapper />
           </GestureHandlerRootView>
         </PersistGate>
@@ -33,14 +35,24 @@ export default function RootLayout() {
 }
 
 function AuthWrapper() {
-  const isLoggedIn = useSelector((state) => state.authData?.isLoggedIn);
+  const isLoggedIn = useSelector(
+    (state) => state.authData.userData?.isLoggedIn
+  );
+
   const [fontsLoaded] = useFonts({
     GoogleSansBold: require("../assets/fonts/GoogleSans-Bold.ttf"),
     GoogleSansMedium: require("../assets/fonts/GoogleSans-Medium.ttf"),
     GoogleSansRegular: require("../assets/fonts/GoogleSans-Regular.ttf"),
     CedarvilleCursiveRegular: require("../assets/fonts/CedarvilleCursiveRegular.ttf"),
   });
-
+  if (typeof DOMException === "undefined") {
+    global.DOMException = class DOMException extends Error {
+      constructor(message, name) {
+        super(message);
+        this.name = name || "DOMException";
+      }
+    };
+  }
   if (!fontsLoaded) {
     return <ActivityIndicator />;
   }
@@ -74,36 +86,37 @@ function AuthWrapper() {
                 ),
               })}
             >
-              {!isLoggedIn && (
+              <Stack.Protected guard={!isLoggedIn}>
                 <Stack.Screen
                   name="index"
                   options={{ title: "Login", headerShown: false }}
                 />
-              )}
-
-              <Stack.Screen
-                name="posts"
-                options={{
-                  title: "YOU",
-                  headerBackVisible: false,
-                }}
-              />
-              <Stack.Screen
-                name="comments"
-                options={{
-                  title: "COMMENTS",
-                  headerTitleStyle: { fontFamily: STRINGS.GoogleSansMedium },
-                  headerRight: () => <View />,
-                }}
-              />
-              <Stack.Screen
-                name="profile"
-                options={{
-                  headerShown: true,
-                  title: "",
-                  headerRight: () => <View />,
-                }}
-              />
+              </Stack.Protected>
+              <Stack.Protected guard={isLoggedIn}>
+                <Stack.Screen
+                  name="posts"
+                  options={{
+                    title: "YOU",
+                    headerBackVisible: false,
+                  }}
+                />
+                <Stack.Screen
+                  name="comments"
+                  options={{
+                    title: "COMMENTS",
+                    headerTitleStyle: { fontFamily: STRINGS.GoogleSansMedium },
+                    headerRight: () => <View />,
+                  }}
+                />
+                <Stack.Screen
+                  name="profile"
+                  options={{
+                    headerShown: true,
+                    title: "",
+                    headerRight: () => <View />,
+                  }}
+                />
+              </Stack.Protected>
             </Stack>
           </GestureHandlerRootView>
         </PersistGate>
