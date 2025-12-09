@@ -1,3 +1,4 @@
+import { useNetInfo } from "@react-native-community/netinfo";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import ButtonComponent from "../atoms/ButtonComponent";
@@ -5,16 +6,8 @@ import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
 import NewPost from "../molecules/NewPost";
 import ProfileHeader from "../molecules/ProfileHeader";
-interface CreatePostsProps {
-  userName: string;
-  openSheet: any;
-  sendPost: () => void;
-  fromSheet: boolean;
-  setPost: any;
-  post: any;
-  postTitle: any;
-  setPostTitle: any;
-}
+import { CreatePostsProps } from "../types/CreatePostsProps";
+
 const CreatePosts: React.FC<CreatePostsProps> = ({
   userName,
   openSheet,
@@ -25,6 +18,8 @@ const CreatePosts: React.FC<CreatePostsProps> = ({
   postTitle,
   setPostTitle,
 }) => {
+  const { isConnected } = useNetInfo();
+
   return (
     <View style={[styles.container, { padding: fromSheet ? 0 : 10 }]}>
       <ProfileHeader userName={userName} />
@@ -47,7 +42,7 @@ const CreatePosts: React.FC<CreatePostsProps> = ({
         <ButtonComponent
           label="Post"
           onClick={() => sendPost()}
-          disable={!post}
+          disable={!post || !isConnected}
         />
       )}
       {!fromSheet && <View style={styles.hLine} />}

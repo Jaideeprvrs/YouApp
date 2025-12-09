@@ -5,13 +5,7 @@ import { StyleSheet, View } from "react-native";
 
 const Profile = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: COLORS.primary,
-        justifyContent: "center",
-      }}
-    >
+    <View style={styles.container}>
       <ProfileScreen />
     </View>
   );
@@ -19,4 +13,10 @@ const Profile = () => {
 
 export default Profile;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.primary,
+    justifyContent: "center",
+  },
+});

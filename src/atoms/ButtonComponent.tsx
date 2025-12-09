@@ -2,18 +2,12 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
-interface ButtonProps {
-  onClick: () => void;
-  label: string;
-  style?: any;
-  disable?: boolean;
-}
+import { ButtonProps } from "../types/ButtonProps";
 
 const ButtonComponent: React.FC<ButtonProps> = ({
   onClick,
   label,
   style,
-
   disable,
 }) => {
   return (

@@ -1,20 +1,13 @@
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import React from "react";
-import { StyleSheet, Text, TextInputProps, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Avtar from "../atoms/Avtar";
 import ButtonComponent from "../atoms/ButtonComponent";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
+import { UpdateFormProps } from "../types/UpdateFormProps";
 
-interface TextInputProps {
-  label?: string;
-  email?: string;
-  onChangeText?: any;
-  id?: number;
-  onUpdate?: () => void;
-}
-
-const TextInputField: React.FC<TextInputProps> = ({
+const TextInputField: React.FC<UpdateFormProps> = ({
   label,
   value,
   email,

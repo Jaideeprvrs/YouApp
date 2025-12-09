@@ -9,14 +9,8 @@ import {
 } from "react-native";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
-
+import { CustomTabsProps } from "../types/CustomTabsProps";
 const { width } = Dimensions.get("window");
-
-interface CustomTabsProps {
-  tabs: string[];
-  onChange?: (index: number) => void;
-  initialIndex?: number;
-}
 
 const CustomTabsSection: React.FC<CustomTabsProps> = ({
   tabs,

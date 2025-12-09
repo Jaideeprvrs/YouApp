@@ -1,27 +1,30 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { useSelector } from "react-redux";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
 import AboutYouSection from "../molecules/AboutYouSection";
 import CustomTabsSection from "../molecules/CustomTabSection";
 import ProfileHeader from "../molecules/ProfileHeader";
+import { ProfileComponentProps } from "../types/ProfileChildrenProps";
 import PostsSection from "./PostsSection";
 
-interface ProfileContentComponent {
-  openSheet: () => void;
-}
-const ProfileContentComponent: React.FC<ProfileContentComponent> = ({
+const ProfileContentComponent: React.FC<ProfileComponentProps> = ({
   openSheet,
 }) => {
   const TABS = ["Posts", "About YOU"];
   const [tabIndex, setTabIndex] = useState(0);
-  const signupForm = useSelector((s) => s?.userData);
-  const name = signupForm?.signupForm?.name;
-  const email = signupForm?.signupForm?.email;
+  const signupForm = useSelector((s) => s?.authData);
+  const name = signupForm?.userData?.name;
+  const email = signupForm?.userData?.email;
 
   return (
-    <View style={[styles.container]}>
+    <View
+      style={[
+        styles.container,
+        { paddingTop: Platform.OS == "android" ? 20 : 0 },
+      ]}
+    >
       <View style={{ marginHorizontal: 10 }}>
         <ProfileHeader
           userName={name}
@@ -49,7 +52,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.white,
-    justifyContent: "flex-start", // 👈 was "center" before
+    justifyContent: "center",
   },
   content: {
     justifyContent: "center",

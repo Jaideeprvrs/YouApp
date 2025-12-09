@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
 import { useUpdateCommentMutation } from "../redux/slices/commentsApi";
+import { addUserPost } from "../redux/slices/postDataSlice";
 import { usePostPostsMutation } from "../redux/slices/postsApi";
-import { addUserPost } from "../redux/slices/userDataSlice";
 
 export const useUserServices = () => {
   const dispatch = useDispatch();
@@ -103,12 +103,12 @@ export const useUserServices = () => {
             fontFamily: STRINGS.GoogleSansMedium,
           },
         });
-
         throw error;
       }
     },
     [updateComment]
   );
+
   return {
     handleCreatePost,
     isLoading,

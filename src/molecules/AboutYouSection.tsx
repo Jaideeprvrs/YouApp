@@ -1,38 +1,35 @@
-import { router, useNavigation } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
+import { logout } from "../redux/slices/authSlice";
 import { dateConversion } from "../utils/dateConversion";
 
 const AboutYouSection = () => {
-  const signupForm = useSelector((s) => s?.userData);
-  const navigation = useNavigation();
-  const name = signupForm?.signupForm?.name;
-  const email = signupForm?.signupForm?.email;
-  const joinedOn = signupForm?.signupForm?.createdAt;
+  const authData = useSelector((state) => state.authData.userData);
+  const name = authData?.name;
+  const email = authData?.email;
+  const joinedOn = authData?.joinedOn;
+
   const { formatDate } = dateConversion();
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.title}>Name</Text>
+        <Text style={styles.title}>{STRINGS.name}</Text>
         <Text style={styles.body}>{name}</Text>
       </View>
       <View>
-        <Text style={styles.title}>Email</Text>
+        <Text style={styles.title}>{STRINGS.email}</Text>
         <Text style={styles.body}>{email}</Text>
       </View>
       <View>
-        <Text style={styles.title}>Joined On</Text>
+        <Text style={styles.title}>{STRINGS.joinedOn}</Text>
         <Text style={styles.body}>{formatDate(joinedOn)}</Text>
       </View>
-      <TouchableOpacity
-        onPress={() => {
-          router.push("/login");
-        }}
-      >
-        <Text style={[styles.title, styles.logout]}>Log Out</Text>
+      <TouchableOpacity onPress={() => dispatch(logout())}>
+        <Text style={[styles.title, styles.logout]}>{STRINGS.logout}</Text>
       </TouchableOpacity>
     </View>
   );

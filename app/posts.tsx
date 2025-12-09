@@ -4,8 +4,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 const PostsScreen = () => {
   return (
-    <View style={{ flex: 1, backgroundColor: COLORS.primary }}>
-      {/* <StatusBar style="dark" /> */}
+    <View style={styles.conatiner}>
       <Posts />
     </View>
   );
@@ -13,4 +12,6 @@ const PostsScreen = () => {
 
 export default PostsScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  conatiner: { flex: 1, backgroundColor: COLORS.primary },
+});

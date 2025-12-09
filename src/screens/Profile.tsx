@@ -22,7 +22,7 @@ const ProfileScreen = () => {
     isLoading: postLoading,
     isSuccess: postSuccess,
   } = useUserServices();
-  const handleSheetChanges = useCallback((index) => {
+  const handleSheetChanges = useCallback((index: number) => {
     if (index === -1) {
       setIsSheetOpen(false);
     } else {
@@ -30,8 +30,7 @@ const ProfileScreen = () => {
     }
   }, []);
   const handleOpenSheet = useCallback(() => {
-    // setSelectedComment(item);
-    bottomSheetRef.current?.expand(); // or .snapToIndex(1)
+    bottomSheetRef.current?.expand();
   }, []);
   const createPost = async () => {
     try {

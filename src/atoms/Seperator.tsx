@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { COLORS } from "../constants/Colors";
 
 const Seperator = () => {
-  return <View style={styles.container} />;
+  return <View style={styles.container} testID="separator-view" />;
 };
 
 export default Seperator;

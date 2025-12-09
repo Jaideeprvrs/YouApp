@@ -4,14 +4,9 @@ import CommentsIcon from "../../assets/images/message.svg";
 import Avtar from "../atoms/Avtar";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
-interface PostInsideCommentsProps {
-  title: string;
-  description: string;
-  postId: number;
-  commentsCount: number;
-}
+import { PostProps } from "../types/PostProps";
 
-const PostInsideComments: React.FC<PostInsideCommentsProps> = ({
+const PostInsideComments: React.FC<PostProps> = ({
   title,
   description,
   postId,

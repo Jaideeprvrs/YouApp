@@ -7,7 +7,9 @@
     "scheme": "you",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-
+    "updates": {
+      "url": "https://u.expo.dev/8e98b2ad-89a2-4502-98ba-c65b873db6a1"
+    },
     "ios": {
       "supportsTablet": true
     },
@@ -16,7 +18,6 @@
       "predictiveBackGestureEnabled": false,
       "package": "com.jai_rvrs.YOU"
     },
-
     "plugins": ["expo-router"],
     "experiments": {
       "typedRoutes": true
@@ -26,6 +27,9 @@
       "eas": {
         "projectId": "8e98b2ad-89a2-4502-98ba-c65b873db6a1"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }

@@ -5,13 +5,8 @@ import CommentsIcon from "../../assets/images/message.svg";
 import Avtar from "../atoms/Avtar";
 import { STRINGS } from "../constants/Strings";
 import { useGetCommentsQuery } from "../redux/slices/commentsApi";
-interface DetailsComponentProps {
-  title: string;
-  description: string;
-  postId?: number;
+import { DetailsComponentProps } from "../types/DetailsComponentProps";
 
-  fromPostsSection?: boolean;
-}
 const DetailsComponent: React.FC<DetailsComponentProps> = ({
   title,
   description,
@@ -39,14 +34,7 @@ const DetailsComponent: React.FC<DetailsComponentProps> = ({
         <Text style={[styles.title]}>{title}</Text>
         <Text style={[styles.body]}>{description}</Text>
         {!error && (
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "flex-start",
-              alignItems: "center",
-              gap: 5,
-            }}
-          >
+          <View style={styles.comments}>
             <CommentsIcon width={18} height={18} />
             <Text style={[styles.body]}>{data?.length}</Text>
           </View>
@@ -82,5 +70,11 @@ const styles = StyleSheet.create({
   parent: {
     flex: 1,
     flexShrink: 1,
+  },
+  comments: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    gap: 5,
   },
 });

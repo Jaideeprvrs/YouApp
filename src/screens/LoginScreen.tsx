@@ -1,5 +1,5 @@
 import BottomSheet from "@gorhom/bottom-sheet";
-import { useNavigation } from "expo-router";
+import { router } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
 import { Keyboard, StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
@@ -7,26 +7,25 @@ import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
 import AnimatedLoginText from "../molecules/AnimatedLoginText";
 // import LoginForm from "../organisms/LoginForm";
-import { router } from "expo-router";
 import CustomBottomSheet from "../organisms/CustomBottomSheet";
 import LoginForm from "../organisms/LoginForm";
-import { setSignupForm } from "../redux/slices/userDataSlice";
+import { loginSuccess } from "../redux/slices/authSlice";
 
 export default function LoginScreen() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
-  const navigation = useNavigation();
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   const handleOnClick = () => {
-    dispatch(
-      setSignupForm({
-        email: email,
-        name: name,
-        createdAt: new Date().toISOString(),
-      })
-    );
+    const obj = {
+      name: name,
+      email: email,
+      joinedOn: new Date().toISOString(),
+      id: Date.now().toString(),
+      isLoggedIn: true,
+    };
+    dispatch(loginSuccess(obj));
     router.push({ pathname: "/posts", params: { userName: name } });
   };
 

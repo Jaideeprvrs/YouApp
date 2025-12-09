@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ButtonComponent /> renders correctly 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#234C6A",
+      "borderRadius": 20,
+      "justifyContent": "center",
+      "opacity": 1,
+      "paddingHorizontal": 20,
+      "paddingVertical": 12,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#F5F5F5",
+        "fontFamily": "GoogleSansMedium",
+        "fontSize": 14,
+      }
+    }
+  >
+    Click Me
+  </Text>
+</View>
+`;
