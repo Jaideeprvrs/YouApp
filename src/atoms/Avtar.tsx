@@ -4,8 +4,8 @@ import Avatar from "../../assets/images/person.svg";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
 import { getColorFromId } from "../utils/getColorFromId";
-const Avtar = ({ id }: number) => {
-  const bgColor = getColorFromId(id.toString());
+const Avtar = ({ id }) => {
+  const bgColor = getColorFromId(id?.toString());
   return (
     <View
       style={[styles.avtar, { backgroundColor: bgColor }]}

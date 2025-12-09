@@ -10,25 +10,31 @@ import {
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNetInfo } from "@react-native-community/netinfo";
+import { router } from "expo-router";
 import { useSelector } from "react-redux";
 import InternetStatus from "../atoms/InternetStatus";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
 import ErrorComponent from "../molecules/ErrorComponent";
 import { MemoizedDetailsComponent } from "../molecules/MemoizedDetailsComponent";
+import CreatePosts from "../organisms/CreatePosts";
 import CustomBottomSheet from "../organisms/CustomBottomSheet";
 import { useGetPostsQuery } from "../redux/slices/postsApi";
 import { useUserServices } from "../services/userService";
-import CreatePosts from "./CreatePosts";
-const Posts = () => {
+const PostsScreen = () => {
   const { isConnected } = useNetInfo();
+  const [connectionInitialized, setConnectionInitialized] = useState(false);
   const bottomSheetRef = useRef<BottomSheet>(null);
   const userData = useSelector((state) => state.authData.userData);
   const userName = userData?.name;
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [post, setPost] = useState(null);
   const [postTitle, setPostTitle] = useState(null);
-
+  useEffect(() => {
+    if (isConnected !== null) {
+      setConnectionInitialized(true);
+    }
+  }, [isConnected]);
   const {
     handleCreatePost,
     isLoading: postLoading,
@@ -43,9 +49,23 @@ const Posts = () => {
   } = useGetPostsQuery();
 
   const [refreshing, setRefreshing] = useState(false);
-  const renderItem = useCallback(({ item }) => {
-    return <MemoizedDetailsComponent item={item} />;
+  const handlePress = useCallback((item) => {
+    router.push({
+      pathname: "/comments",
+      params: {
+        postId: item?.id,
+        postName: item?.title,
+        postBody: item?.body,
+      },
+    });
   }, []);
+
+  const renderItem = useCallback(
+    ({ item }) => {
+      return <MemoizedDetailsComponent item={item} handlePress={handlePress} />;
+    },
+    [handlePress]
+  );
   useEffect(() => {
     (async () => {
       const persisted = await AsyncStorage.getItem("persist:root");
@@ -118,7 +138,7 @@ const Posts = () => {
 
   return (
     <View style={styles.container}>
-      {!isConnected && <InternetStatus />}
+      {connectionInitialized && !isConnected && <InternetStatus />}
       <FlatList
         data={onlinePosts}
         ListHeaderComponent={Header}
@@ -165,7 +185,7 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default PostsScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,

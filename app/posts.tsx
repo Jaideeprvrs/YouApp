@@ -1,16 +1,17 @@
 import { COLORS } from "@/src/constants/Colors";
-import Posts from "@/src/screens/Posts";
+import PostsScreen from "@/src/screens/PostsScreen";
+
 import React from "react";
 import { StyleSheet, View } from "react-native";
-const PostsScreen = () => {
+const Posts = () => {
   return (
     <View style={styles.conatiner}>
-      <Posts />
+      <PostsScreen />
     </View>
   );
 };
 
-export default PostsScreen;
+export default Posts;
 
 const styles = StyleSheet.create({
   conatiner: { flex: 1, backgroundColor: COLORS.primary },

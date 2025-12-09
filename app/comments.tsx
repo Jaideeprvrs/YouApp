@@ -1,17 +1,17 @@
 import { COLORS } from "@/src/constants/Colors";
-import Comments from "@/src/screens/Comments";
+import CommentsScreen from "@/src/screens/CommentsScreen";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-const CommentsScreen = () => {
+const Comments = () => {
   return (
     <View style={styles.container}>
-      <Comments />
+      <CommentsScreen />
     </View>
   );
 };
 
-export default CommentsScreen;
+export default Comments;
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: COLORS.primary },
