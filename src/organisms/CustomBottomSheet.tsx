@@ -1,6 +1,6 @@
 import BottomSheet, {
   BottomSheetBackdrop,
-  BottomSheetView,
+  BottomSheetScrollView,
 } from "@gorhom/bottom-sheet";
 import React, { useCallback } from "react";
 import { StyleSheet } from "react-native";
@@ -49,11 +49,9 @@ const CustomBottomSheet: React.FC<CustomBottomSheetProps> = ({
       backdropComponent={backDrop && renderBackdrop}
       testID="mock-bottom-sheet"
     >
-      <BottomSheetView
-        style={[styles.contentContainer, { paddingBottom: insets.bottom + 16 }]}
-      >
+      <BottomSheetScrollView style={[styles.contentContainer]}>
         {children}
-      </BottomSheetView>
+      </BottomSheetScrollView>
     </BottomSheet>
   );
 };

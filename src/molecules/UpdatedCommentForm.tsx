@@ -13,7 +13,6 @@ const TextInputField: React.FC<UpdateFormProps> = ({
   email,
   onChangeText,
   id,
-  isSheetOpen,
   onUpdate,
 }) => {
   return (
@@ -31,7 +30,6 @@ const TextInputField: React.FC<UpdateFormProps> = ({
         value={value}
         multiline
         onChangeText={onChangeText}
-        // autoFocus={isSheetOpen}
       />
       <ButtonComponent label="Update" onClick={onUpdate} />
     </View>

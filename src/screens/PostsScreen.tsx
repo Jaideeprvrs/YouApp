@@ -8,7 +8,6 @@ import {
   View,
 } from "react-native";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNetInfo } from "@react-native-community/netinfo";
 import { router } from "expo-router";
 import { useSelector } from "react-redux";
@@ -66,12 +65,7 @@ const PostsScreen = () => {
     },
     [handlePress]
   );
-  useEffect(() => {
-    (async () => {
-      const persisted = await AsyncStorage.getItem("persist:root");
-      // console.log("PERSIST ROOT RAW =>", persisted);
-    })();
-  }, []);
+
   const onRefresh = () => {
     setRefreshing(true);
     setTimeout(() => {
@@ -167,7 +161,7 @@ const PostsScreen = () => {
         initialSnap={-1}
         onChange={handleSheetChanges}
         sheetRef={bottomSheetRef}
-        snapPoints={["60%"]}
+        snapPoints={["60%", "80%"]}
       >
         <CreatePosts
           userName={userName}

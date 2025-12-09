@@ -126,25 +126,22 @@ export default function CommentsScreen() {
         sheetRef={bottomSheetRef}
         onChange={handleSheetChanges}
         initialSnap={-1}
-        snapPoints={["45%"]}
+        snapPoints={["60%", "80%"]}
         backDrop={true}
         enablePanDown={true}
         enableHandlePanning={true}
         enableContentPanning={true}
       >
-        {isSheetOpen && (
-          <UpdatedCommentForm
-            value={selectedComment?.body}
-            label={selectedComment?.name}
-            email={selectedComment?.email}
-            onChangeText={(text) =>
-              setSelectedComment((prev) => ({ ...prev, body: text }))
-            }
-            id={postId}
-            onUpdate={handleOnUpdate}
-            isSheetOpen={isSheetOpen}
-          />
-        )}
+        <UpdatedCommentForm
+          value={selectedComment?.body}
+          label={selectedComment?.name}
+          email={selectedComment?.email}
+          onChangeText={(text) =>
+            setSelectedComment((prev) => ({ ...prev, body: text }))
+          }
+          id={postId}
+          onUpdate={handleOnUpdate}
+        />
       </CustomBottomSheet>
     </View>
   );

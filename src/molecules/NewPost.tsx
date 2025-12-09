@@ -29,6 +29,7 @@ const NewPost: React.FC<NewPostProps> = ({
         multiline
         value={post}
         onChangeText={setPost}
+        maxLength={500}
       />
     </View>
   );
