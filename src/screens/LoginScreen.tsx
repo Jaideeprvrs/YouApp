@@ -1,7 +1,7 @@
 import BottomSheet from "@gorhom/bottom-sheet";
 import { router } from "expo-router";
-import React, { useEffect, useRef, useState } from "react";
-import { Keyboard, StyleSheet, View } from "react-native";
+import React, { useRef, useState } from "react";
+import { StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { STRINGS } from "../constants/Strings";
 import AnimatedLoginText from "../molecules/AnimatedLoginText";
@@ -26,14 +26,6 @@ export default function LoginScreen() {
     dispatch(loginSuccess(obj));
     router.push({ pathname: "/posts", params: { userName: name } });
   };
-
-  useEffect(() => {
-    const hide = Keyboard.addListener("keyboardDidHide", () => {
-      bottomSheetRef.current?.snapToIndex(1);
-    });
-
-    return () => hide.remove();
-  }, []);
 
   return (
     <View style={styles.container}>

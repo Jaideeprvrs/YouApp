@@ -4,13 +4,7 @@ import { persistor, store } from "@/src/redux/store";
 import { useFonts } from "expo-font";
 import { router, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import {
-  ActivityIndicator,
-  Image,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ActivityIndicator, Image, Text, TouchableOpacity } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { RootSiblingParent } from "react-native-root-siblings";
 import "react-native-url-polyfill/auto";
@@ -104,7 +98,7 @@ function AuthWrapper() {
                   options={{
                     title: "COMMENTS",
                     headerTitleStyle: { fontFamily: STRINGS.GoogleSansMedium },
-                    headerRight: () => <View />,
+                    headerRight: () => null,
                   }}
                 />
                 <Stack.Screen
@@ -112,7 +106,7 @@ function AuthWrapper() {
                   options={{
                     headerShown: true,
                     title: "",
-                    headerRight: () => <View />,
+                    headerRight: () => null,
                   }}
                 />
               </Stack.Protected>

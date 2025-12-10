@@ -35,7 +35,6 @@ const ProfileScreen = () => {
   const createPost = async () => {
     try {
       await handleCreatePost({ post, postTitle });
-      // refetch();
       bottomSheetRef.current?.close();
       setPost("");
       setPostTitle("");
@@ -61,7 +60,7 @@ const ProfileScreen = () => {
         initialSnap={-1}
         onChange={handleSheetChanges}
         sheetRef={bottomSheetRef}
-        snapPoints={["60%"]}
+        snapPoints={["45%"]}
       >
         <CreatePosts
           userName={name}

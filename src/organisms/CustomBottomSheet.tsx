@@ -46,6 +46,8 @@ const CustomBottomSheet: React.FC<CustomBottomSheetProps> = ({
         { paddingBottom: insets.bottom },
       ]}
       backdropComponent={backDrop && renderBackdrop}
+      keyboardBehavior="interactive"
+      keyboardBlurBehavior="restore"
     >
       <BottomSheetView
         style={[styles.contentContainer, { paddingBottom: insets.bottom + 16 }]}
@@ -62,9 +64,9 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   bottomSheetBackground: {
-    backgroundColor: COLORS.white, // Or any background color
-    elevation: 20, // Adjust the value as needed for desired elevation
-    shadowColor: COLORS.black, // For iOS shadow
+    backgroundColor: COLORS.white,
+    elevation: 20,
+    shadowColor: COLORS.black,
     shadowOffset: {
       width: 0,
       height: 2,

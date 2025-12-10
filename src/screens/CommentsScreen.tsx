@@ -1,10 +1,9 @@
 import BottomSheet from "@gorhom/bottom-sheet";
 import { useLocalSearchParams } from "expo-router";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
-  Keyboard,
   RefreshControl,
   StyleSheet,
   View,
@@ -56,13 +55,7 @@ export default function CommentsScreen() {
       console.log("API Error:", error);
     }
   };
-  useEffect(() => {
-    const hide = Keyboard.addListener("keyboardDidHide", () => {
-      bottomSheetRef.current?.snapToIndex(1);
-    });
 
-    return () => hide.remove();
-  }, []);
   const onRefresh = () => {
     setRefreshing(true);
     setTimeout(() => {

@@ -5,7 +5,7 @@ import { StyleSheet, View } from "react-native";
 
 const Comments = () => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="comments-container">
       <CommentsScreen />
     </View>
   );

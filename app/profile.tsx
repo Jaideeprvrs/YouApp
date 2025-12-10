@@ -5,7 +5,7 @@ import { StyleSheet, View } from "react-native";
 
 const Profile = () => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="profile-container">
       <ProfileScreen />
     </View>
   );

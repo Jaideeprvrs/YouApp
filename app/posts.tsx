@@ -5,7 +5,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 const Posts = () => {
   return (
-    <View style={styles.conatiner}>
+    <View style={styles.conatiner} testID="posts-container">
       <PostsScreen />
     </View>
   );
