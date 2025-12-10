@@ -58,7 +58,7 @@ export default function CommentsScreen() {
   };
   useEffect(() => {
     const hide = Keyboard.addListener("keyboardDidHide", () => {
-      bottomSheetRef.current?.snapToIndex(0);
+      bottomSheetRef.current?.snapToIndex(1);
     });
 
     return () => hide.remove();

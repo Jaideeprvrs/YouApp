@@ -3,10 +3,8 @@ import { router } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
 import { Keyboard, StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
-import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
 import AnimatedLoginText from "../molecules/AnimatedLoginText";
-// import LoginForm from "../organisms/LoginForm";
 import CustomBottomSheet from "../organisms/CustomBottomSheet";
 import LoginForm from "../organisms/LoginForm";
 import { loginSuccess } from "../redux/slices/authSlice";
@@ -31,7 +29,7 @@ export default function LoginScreen() {
 
   useEffect(() => {
     const hide = Keyboard.addListener("keyboardDidHide", () => {
-      bottomSheetRef.current?.snapToIndex(0);
+      bottomSheetRef.current?.snapToIndex(1);
     });
 
     return () => hide.remove();
@@ -47,8 +45,8 @@ export default function LoginScreen() {
 
       <CustomBottomSheet
         sheetRef={bottomSheetRef}
-        initialSnap={0}
-        snapPoints={["50%"]}
+        initialSnap={1}
+        snapPoints={["45%"]}
         backDrop={false}
         enablePanDown={false}
         enableContentPanning={false}
@@ -71,29 +69,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  headerCard: {
-    height: "100%",
-    width: "100%",
-    backgroundColor: COLORS.secondary,
-    alignItems: "flex-start",
-    justifyContent: "center",
-    padding: 20,
-  },
-  parent: {
-    flex: 1,
-    justifyContent: "space-evenly",
-    padding: 20,
-    borderRadius: 20,
-    gap: 30,
-  },
-  appTitle: {
-    textAlign: "left",
-    fontSize: 50,
-    fontFamily: STRINGS.GoogleSansBold,
-    color: COLORS.white,
-    // marginBottom: 10,
-  },
-
   animatedText: {
     fontSize: 50,
     fontWeight: "600",
