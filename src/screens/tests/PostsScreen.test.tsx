@@ -11,8 +11,8 @@ import { router } from "expo-router";
 import React from "react";
 import { useSelector } from "react-redux";
 import { STRINGS } from "../../constants/Strings";
+import { useUserServices } from "../../hooks/useUserServices";
 import { useGetPostsQuery } from "../../redux/slices/postsApi";
-import { useUserServices } from "../../services/userService";
 import PostsScreen from "../PostsScreen"; // Adjust import path
 
 // --- Mocks ---

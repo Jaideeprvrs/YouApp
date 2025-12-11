@@ -3,7 +3,7 @@ import { act, renderHook } from "@testing-library/react-hooks";
 import Toast from "react-native-root-toast";
 import { useDispatch } from "react-redux";
 import { STRINGS } from "../constants/Strings";
-import { useUserServices } from "../services/userService";
+import { useUserServices } from "./useUserServices";
 
 const useDispatchMock = jest.spyOn(redux, "useDispatch");
 

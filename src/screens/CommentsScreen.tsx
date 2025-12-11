@@ -10,13 +10,13 @@ import {
 } from "react-native";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
+import { useUserServices } from "../hooks/useUserServices";
 import CommentsComponent from "../molecules/CommentsComponent";
 import ErrorComponent from "../molecules/ErrorComponent";
 import PostInsideComments from "../molecules/PostInsideComments";
 import UpdatedCommentForm from "../molecules/UpdatedCommentForm";
 import CustomBottomSheet from "../organisms/CustomBottomSheet";
 import { useGetCommentsQuery } from "../redux/slices/commentsApi";
-import { useUserServices } from "../services/userService";
 
 export default function CommentsScreen() {
   const { postId, postName, postBody } = useLocalSearchParams();

@@ -14,12 +14,12 @@ import { useSelector } from "react-redux";
 import InternetStatus from "../atoms/InternetStatus";
 import { COLORS } from "../constants/Colors";
 import { STRINGS } from "../constants/Strings";
+import { useUserServices } from "../hooks/useUserServices";
 import ErrorComponent from "../molecules/ErrorComponent";
 import { MemoizedDetailsComponent } from "../molecules/MemoizedDetailsComponent";
 import CreatePosts from "../organisms/CreatePosts";
 import CustomBottomSheet from "../organisms/CustomBottomSheet";
 import { useGetPostsQuery } from "../redux/slices/postsApi";
-import { useUserServices } from "../services/userService";
 const PostsScreen = () => {
   const { isConnected } = useNetInfo();
   const [connectionInitialized, setConnectionInitialized] = useState(false);
