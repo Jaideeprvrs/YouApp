@@ -22,7 +22,6 @@ export const STRINGS = {
   toastError: "Something went wrong ❌",
   commentUpdated: "Comment updated ✅",
   postDescPlaceholder: "write about YOU...",
-  url: "https://jsonplaceholder.typicode.com",
   emailRegex: /^[^s@]+@[^s@]+.[^s@]+$/,
   loginDesc: "let YOU set things up for you.",
   offline: " You are currently Offline.",
