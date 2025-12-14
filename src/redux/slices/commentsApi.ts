@@ -1,10 +1,10 @@
-import { STRINGS } from "@/src/constants/Strings";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
+import Constants from "expo-constants";
+const BASE_URL = Constants?.expoConfig?.extra?.apiBaseUrl;
 export const commentsApi = createApi({
   reducerPath: "commentsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: STRINGS.url,
+    baseUrl: BASE_URL,
   }),
   tagTypes: ["Comments"],
   keepUnusedDataFor: 24 * 60 * 60,

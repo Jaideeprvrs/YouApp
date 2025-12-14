@@ -26,7 +26,8 @@
       "router": {},
       "eas": {
         "projectId": "8e98b2ad-89a2-4502-98ba-c65b873db6a1"
-      }
+      },
+      "apiBaseUrl": "https://jsonplaceholder.typicode.com"
     },
     "runtimeVersion": {
       "policy": "appVersion"

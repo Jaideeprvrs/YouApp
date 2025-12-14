@@ -1,11 +1,11 @@
-import { STRINGS } from "@/src/constants/Strings";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
+import Constants from "expo-constants";
+const BASE_URL = Constants?.expoConfig?.extra?.apiBaseUrl;
 export const postsApi = createApi({
   reducerPath: "postsApi",
 
   baseQuery: fetchBaseQuery({
-    baseUrl: STRINGS.url,
+    baseUrl: BASE_URL,
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json; charset=utf-8");
       return headers;
