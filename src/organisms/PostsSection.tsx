@@ -17,7 +17,8 @@ const PostsSection: React.FC<ProfileComponentProps> = ({ openSheet }) => {
         title={item?.title}
         description={item?.body}
         fromPostsSection={true}
-        postId={index}
+        postId={item?.id}
+        index={index}
       />
     );
   }, []);
@@ -51,5 +52,5 @@ const PostsSection: React.FC<ProfileComponentProps> = ({ openSheet }) => {
 export default PostsSection;
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 10 },
+  container: { flex: 1, paddingVertical: 10 },
 });

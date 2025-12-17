@@ -1,46 +1,85 @@
 import React, { memo } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, StyleSheet, Text, View } from "react-native";
+import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import Animated, { FadeInUp } from "react-native-reanimated";
+import { useDispatch } from "react-redux";
 import CommentsIcon from "../../assets/images/message.svg";
 import Avtar from "../atoms/Avtar";
 import { STRINGS } from "../constants/Strings";
 import { useGetCommentsQuery } from "../redux/slices/commentsApi";
+import { deleteUserPost } from "../redux/slices/postDataSlice";
 import { DetailsComponentProps } from "../types/DetailsComponentProps";
+import { showToast } from "../utils/helper";
+import RightAction from "./RightAction";
 
 const DetailsComponent: React.FC<DetailsComponentProps> = ({
   title,
   description,
   postId,
   fromPostsSection,
+  index,
 }) => {
   const { data, error, refetch } = useGetCommentsQuery(postId);
   const AnimatedView = Animated.View;
+  const dispatch = useDispatch();
+  const renderRightActions = (_progress: any, dragX: any) => {
+    const handleDelete = () => {
+      Alert.alert(
+        STRINGS.deletePost,
+        STRINGS.deletePostAlertMsg,
+        [
+          {
+            text: STRINGS.cancel,
+            style: "cancel",
+          },
+          {
+            text: STRINGS.delete,
+            style: "destructive",
+            onPress: () => {
+              dispatch(deleteUserPost(postId));
+              showToast(STRINGS.postDeleted);
+            },
+          },
+        ],
+        { cancelable: true }
+      );
+    };
+
+    return <RightAction dragX={dragX} handleDelete={handleDelete} />;
+  };
 
   return (
-    <AnimatedView
-      style={styles.container}
-      entering={FadeInUp.delay(postId * 60).duration(300)}
+    <Swipeable
+      overshootRight={false}
+      friction={2}
+      renderRightActions={renderRightActions}
+      enabled={fromPostsSection}
     >
-      {fromPostsSection ? (
-        <Image
-          source={require("../../assets/images/man.png")}
-          style={{ width: 30, height: 30, borderRadius: 50 }}
-          resizeMode="cover"
-        />
-      ) : (
-        <Avtar id={postId ?? 1} />
-      )}
-      <View style={styles.parent}>
-        <Text style={[styles.title]}>{title}</Text>
-        <Text style={[styles.body]}>{description}</Text>
-        {!error && (
-          <View style={styles.comments}>
-            <CommentsIcon width={18} height={18} />
-            <Text style={[styles.body]}>{data?.length}</Text>
-          </View>
+      <AnimatedView
+        style={styles.container}
+        entering={FadeInUp.delay(index * 60).duration(300)}
+      >
+        {fromPostsSection ? (
+          <Image
+            source={require("../../assets/images/man.png")}
+            style={{ width: 30, height: 30, borderRadius: 50 }}
+            resizeMode="cover"
+          />
+        ) : (
+          <Avtar id={postId ?? 1} />
         )}
-      </View>
-    </AnimatedView>
+        <View style={styles.parent}>
+          <Text style={[styles.title]}>{title}</Text>
+          <Text style={[styles.body]}>{description}</Text>
+          {!error && (
+            <View style={styles.comments}>
+              <CommentsIcon width={18} height={18} />
+              <Text style={[styles.body]}>{data?.length}</Text>
+            </View>
+          )}
+        </View>
+      </AnimatedView>
+    </Swipeable>
   );
 };
 

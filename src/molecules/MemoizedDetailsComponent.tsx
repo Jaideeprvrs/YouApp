@@ -11,6 +11,7 @@ export const MemoizedDetailsComponent: React.FC<MemoizedDetailsComponentProps> =
           title={item?.title}
           description={item?.body}
           postId={item?.id}
+          fromPostsSection={false}
         />
       </TouchableOpacity>
     );

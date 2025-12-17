@@ -32,4 +32,9 @@ export const STRINGS = {
   noPostsdesc: "No posts yet. Go ahead and break the silence!",
   createPost: "Create a post",
   noPostsTitle: "No Posts",
+  deletePost: "Delete post",
+  deletePostAlertMsg: "Are you sure you want to delete this post?",
+  cancel: "Cancel",
+  delete: "Delete",
+  postDeleted: "Post Deleted ✅",
 };

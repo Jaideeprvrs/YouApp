@@ -20,7 +20,7 @@ const NewPost: React.FC<NewPostProps> = ({
         multiline
         value={postTitle}
         onChangeText={setPostTitle}
-        maxLength={20}
+        maxLength={30}
       />
       <BottomSheetTextInput
         style={[styles.input, { padding: 15 }]}

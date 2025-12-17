@@ -3,4 +3,5 @@ export interface DetailsComponentProps {
   description: string;
   postId?: number;
   fromPostsSection?: boolean;
+  index?: number;
 }

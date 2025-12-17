@@ -52,10 +52,7 @@ function AuthWrapper() {
   return (
     <RootSiblingParent>
       <Provider store={store}>
-        <PersistGate
-          loading={<Text>Loading cached data...</Text>}
-          persistor={persistor}
-        >
+        <PersistGate persistor={persistor}>
           <GestureHandlerRootView style={{ flex: 1 }}>
             <Stack
               screenOptions={() => ({

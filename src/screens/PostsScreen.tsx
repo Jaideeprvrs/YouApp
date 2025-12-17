@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
+  Keyboard,
   RefreshControl,
   StyleSheet,
   View,
@@ -91,6 +92,7 @@ const PostsScreen = () => {
       const res = await handleCreatePost({ post, postTitle });
       refetch();
       bottomSheetRef.current?.close();
+      Keyboard.dismiss();
       setPost("");
       setPostTitle("");
     } catch (e) {

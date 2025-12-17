@@ -1,6 +1,6 @@
 import BottomSheet from "@gorhom/bottom-sheet";
 import React, { useCallback, useRef, useState } from "react";
-import { StyleSheet } from "react-native";
+import { Keyboard, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import { COLORS } from "../constants/Colors";
@@ -36,6 +36,7 @@ const ProfileScreen = () => {
     try {
       await handleCreatePost({ post, postTitle });
       bottomSheetRef.current?.close();
+      Keyboard.dismiss();
       setPost("");
       setPostTitle("");
     } catch (e) {
