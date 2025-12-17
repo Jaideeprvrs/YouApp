@@ -54,4 +54,17 @@ This application fulfills all project requirements while maintaining clean archi
 * User profile section
 * Secure logout functionality
 
+---
+
+**Delete functionality Screen Recording**
+
+https://github.com/user-attachments/assets/45abb991-ba63-47c0-966f-3157784e36fa
+
+**Offline Mode ScreenShot**
+
+<img width="590" height="1278" alt="Offline_Mode" src="https://github.com/user-attachments/assets/8181518d-8942-4160-8cba-878946a085ac" />
+
+
+
+
 
